@@ -5,7 +5,13 @@
       "Bash(git init:*)",
       "Bash(git branch:*)",
       "Bash(git remote add:*)",
-      "Bash(git add:*)"
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$(cat <<''EOF''\nInitial commit: KaoPuShangjia Premium App Listing Website\n\n- 高端APP上架服务网站\n- 包含苹果、谷歌、开发者服务模块\n- 现代化渐变设计，动态背景效果\n- 响应式布局，完美适配各种设备\n- 10年行业经验展示\n- 客户评价、成功案例展示\n- 所有图片和资源文件\n\n🤖 Generated with [Claude Code](https://claude.com/claude-code)\n\nCo-Authored-By: Claude <noreply@anthropic.com>\nEOF\n)\")",
+      "Bash(git commit:*)",
+      "Bash(git push:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(chmod:*)",
+      "Bash(git mv:*)"
     ],
     "deny": [],
     "ask": []
