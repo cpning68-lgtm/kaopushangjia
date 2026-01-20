@@ -1,0 +1,1232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KaoPuShangjia - 顶级APP上架服务 | Premium App Listing Services</title>
+    <meta name="keywords" content="APP上架、IOS上架、Appstore上架、Google Play上架、应用商店上架">
+    <meta name="description" content="顶级APP上架一站式服务商，专注苹果IOS、谷歌GooglePlay商店APP上架，10年专业经验，技术领先。">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --secondary-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            --accent-gradient: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            --gold-gradient: linear-gradient(135deg, #f6d365 0%, #fda085 100%);
+            --dark-bg: #0a0e27;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text-light: #ffffff;
+            --text-gray: #a0aec0;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* 动态背景 */
+        .animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0a0e27 0%, #1a1f3a 50%, #0f1419 100%);
+        }
+
+        .animated-bg::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+
+        .animated-bg::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(245, 87, 108, 0.15) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 15s ease-in-out infinite;
+        }
+
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-100px, -100px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(102, 126, 234, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(102, 126, 234, 0.8), 0 0 60px rgba(245, 87, 108, 0.5); }
+        }
+
+        /* 导航栏 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 20px 0;
+            background: rgba(10, 14, 39, 0.8);
+            backdrop-filter: blur(20px);
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .navbar.scrolled {
+            padding: 15px 0;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            letter-spacing: -1px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo svg {
+            width: 35px;
+            height: 35px;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary-gradient);
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .cta-btn {
+            padding: 12px 30px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .cta-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 120px 40px 80px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1000px;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 72px;
+            font-weight: 800;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #fff 0%, #667eea 50%, #f5576c 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            line-height: 1.2;
+            animation: fadeInUp 1s ease;
+        }
+
+        .hero .subtitle {
+            font-size: 28px;
+            color: var(--text-gray);
+            margin-bottom: 15px;
+            animation: fadeInUp 1s ease 0.2s backwards;
+        }
+
+        .hero .highlight {
+            font-size: 20px;
+            color: #f5576c;
+            margin-bottom: 50px;
+            font-weight: 600;
+            animation: fadeInUp 1s ease 0.4s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            animation: fadeInUp 1s ease 0.6s backwards;
+        }
+
+        .btn-primary {
+            padding: 18px 50px;
+            background: var(--primary-gradient);
+            border: none;
+            border-radius: 50px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .btn-secondary {
+            padding: 18px 50px;
+            background: transparent;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50px;
+            color: white;
+            font-size: 18px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-secondary:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-3px);
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Section 通用样式 */
+        .section {
+            padding: 100px 40px;
+            position: relative;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 80px;
+        }
+
+        .section-title h2 {
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, #667eea 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .section-title p {
+            font-size: 18px;
+            color: var(--text-gray);
+        }
+
+        /* 服务卡片 */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 40px;
+            margin-bottom: 60px;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 30px;
+            padding: 50px 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: var(--primary-gradient);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+            z-index: -1;
+        }
+
+        .service-card:nth-child(2)::before {
+            background: var(--secondary-gradient);
+        }
+
+        .service-card:nth-child(3)::before {
+            background: var(--accent-gradient);
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 60px rgba(102, 126, 234, 0.3);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .service-card:hover::before {
+            opacity: 0.1;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            background: var(--primary-gradient);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            margin-bottom: 30px;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+        }
+
+        .service-card:nth-child(2) .service-icon {
+            background: var(--secondary-gradient);
+        }
+
+        .service-card:nth-child(3) .service-icon {
+            background: var(--accent-gradient);
+        }
+
+        .service-card h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            font-weight: 700;
+        }
+
+        .service-card p {
+            color: var(--text-gray);
+            line-height: 1.8;
+            margin-bottom: 12px;
+        }
+
+        /* 关于我们 */
+        .about-section {
+            background: rgba(102, 126, 234, 0.03);
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .about-image {
+            position: relative;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 30px;
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.3);
+        }
+
+        .about-image::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: -20px;
+            width: 100%;
+            height: 100%;
+            border: 2px solid rgba(102, 126, 234, 0.3);
+            border-radius: 30px;
+            z-index: -1;
+        }
+
+        .about-text h2 {
+            font-size: 48px;
+            margin-bottom: 30px;
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .about-text p {
+            color: var(--text-gray);
+            line-height: 2;
+            margin-bottom: 20px;
+            text-indent: 2em;
+        }
+
+        /* 优势特点 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+        }
+
+        .feature-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            display: flex;
+            gap: 25px;
+        }
+
+        .feature-card:hover {
+            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(102, 126, 234, 0.5);
+            transform: translateX(10px);
+        }
+
+        .feature-number {
+            width: 60px;
+            height: 60px;
+            background: var(--primary-gradient);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .feature-card:nth-child(2) .feature-number {
+            background: var(--secondary-gradient);
+        }
+
+        .feature-card:nth-child(3) .feature-number {
+            background: var(--accent-gradient);
+        }
+
+        .feature-card:nth-child(4) .feature-number {
+            background: var(--gold-gradient);
+        }
+
+        .feature-content h3 {
+            font-size: 22px;
+            margin-bottom: 15px;
+        }
+
+        .feature-content p {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        /* 数据统计 */
+        .stats-section {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(245, 87, 108, 0.1) 100%);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-card {
+            padding: 40px 20px;
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .stat-number {
+            font-size: 56px;
+            font-weight: 800;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .stat-card:nth-child(2) .stat-number {
+            background: var(--secondary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card:nth-child(3) .stat-number {
+            background: var(--accent-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-card:nth-child(4) .stat-number {
+            background: var(--gold-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .stat-label {
+            font-size: 18px;
+            color: var(--text-gray);
+            font-weight: 500;
+        }
+
+        /* 案例展示 */
+        .cases-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .case-card {
+            border-radius: 25px;
+            overflow: hidden;
+            position: relative;
+            aspect-ratio: 1;
+            cursor: pointer;
+        }
+
+        .case-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+
+        .case-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.9) 0%, transparent 100%);
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .case-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .case-card:hover .case-overlay {
+            transform: translateY(0);
+        }
+
+        .case-overlay h3 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* 客户评价 */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 40px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.2);
+        }
+
+        .testimonial-header {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            margin-bottom: 25px;
+        }
+
+        .testimonial-avatar {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: 700;
+        }
+
+        .testimonial-info h4 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .testimonial-role {
+            color: var(--text-gray);
+            font-size: 14px;
+        }
+
+        .testimonial-text {
+            color: var(--text-gray);
+            line-height: 1.8;
+            font-style: italic;
+        }
+
+        .stars {
+            color: #f6d365;
+            margin-bottom: 20px;
+            font-size: 20px;
+        }
+
+        /* Footer */
+        .footer {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 60px 40px 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 60px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-size: 32px;
+            font-weight: 700;
+            background: var(--primary-gradient);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .footer-logo svg {
+            width: 40px;
+            height: 40px;
+        }
+
+        .footer-desc {
+            color: var(--text-gray);
+            line-height: 1.8;
+        }
+
+        .footer-title {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 25px;
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--text-light);
+            padding-left: 5px;
+        }
+
+        .footer-bottom {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            text-align: center;
+            color: var(--text-gray);
+        }
+
+        /* 悬浮按钮 */
+        .floating-buttons {
+            position: fixed;
+            right: 40px;
+            bottom: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            z-index: 999;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: var(--primary-gradient);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            text-decoration: none;
+        }
+
+        .floating-btn:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.6);
+        }
+
+        .floating-btn.secondary {
+            background: var(--secondary-gradient);
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 1024px) {
+            .hero h1 {
+                font-size: 56px;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .services-grid,
+            .cases-grid,
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 42px;
+            }
+
+            .hero .subtitle {
+                font-size: 22px;
+            }
+
+            .nav-menu {
+                display: none;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .section {
+                padding: 60px 20px;
+            }
+
+            .section-title h2 {
+                font-size: 36px;
+            }
+
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 滚动动画 */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg"></div>
+
+    <!-- 导航栏 -->
+    <nav class="navbar" id="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="logo.jpeg" alt="KaoPuShangjia Logo" style="width: 35px; height: 35px; object-fit: contain;">
+                KaoPuShangjia
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home">首页</a></li>
+                <li><a href="#services">服务</a></li>
+                <li><a href="#about">关于</a></li>
+                <li><a href="#features">优势</a></li>
+                <li><a href="#cases">案例</a></li>
+                <li><a href="#testimonials">评价</a></li>
+            </ul>
+            <a href="https://t.me/aleshuaige" target="_blank" class="cta-btn">立即咨询</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>APP上架源头技术供应商</h1>
+            <p class="subtitle">因为专注，所以专业</p>
+            <p class="highlight">⭐ 10年经验老牌服务商 · 行业领先技术团队</p>
+            <div class="hero-buttons">
+                <a href="#services" class="btn-primary">探索服务</a>
+                <a href="https://t.me/aleshuaige" target="_blank" class="btn-secondary">联系我们</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- 核心业务 -->
+    <section class="section" id="services">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>核心业务</h2>
+                <p>成熟技术团队提供专业审核方案，一站式解决您的上架需求</p>
+            </div>
+            <div class="services-grid">
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <img src="苹果.png" alt="苹果APP上架" style="width: 50px; height: 50px; object-fit: contain;">
+                    </div>
+                    <h3>苹果APP上架</h3>
+                    <p>• App Store极速上架，全球下载，官方即刻审核</p>
+                    <p>• 100%上架成功，免费下载不限次，拓客无烦恼</p>
+                    <p>• H5马甲包上架，定制专属logo与应用名称</p>
+                    <p>• 消息推送与安全密码保护，稳定有保障</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <img src="安卓.jpeg" alt="谷歌APP上架" style="width: 50px; height: 50px; object-fit: contain;">
+                    </div>
+                    <h3>谷歌APP上架</h3>
+                    <p>• 行业龙头上架，支持老号、二更、新号等多种提审方案</p>
+                    <p>• 提供APP上架资料，纯净无关联账号上架</p>
+                    <p>• 稳定下载超15万+，确保应用稳定运行</p>
+                    <p>• 24小时内完成送审，深度解决过审问题</p>
+                </div>
+                <div class="service-card fade-in">
+                    <div class="service-icon">
+                        <img src="开发者服务.jpeg" alt="开发者服务" style="width: 50px; height: 50px; object-fit: contain;">
+                    </div>
+                    <h3>开发者服务</h3>
+                    <p>• 开发者账号快速购买，官方审核无忧</p>
+                    <p>• iOS企业签名，保障应用安全与稳定</p>
+                    <p>• TF白包账号，极速审核通过，无惧下架风险</p>
+                    <p>• 支持长期分发，无限制，应用畅行无阻</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 关于我们 -->
+    <section class="section about-section" id="about">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image fade-in">
+                    <img src="logo.jpeg" alt="KaoPuShangjia">
+                </div>
+                <div class="about-text fade-in">
+                    <h2>KaoPuShangjia</h2>
+                    <p>自2015年成立以来，KaoPuShangjia一直致力于为全球客户提供高效、专业的APP上架服务。团队秉承"诚信为本，服务至上"的理念，凭借多年的行业经验和深厚的技术积淀，赢得了客户的信任和支持。</p>
+                    <p>我们为客户提供苹果APP上架、谷歌APP上架、苹果TF签名白包、开发者账号购买、苹果企业签名、H5封装与报毒处理等一站式服务。</p>
+                    <p>专注于为客户提供定制化解决方案的同时作为行业领头羊与更多领先服务者建立了深度合作关系，凭借出色的服务和优质的产品，共同推动行业发展。</p>
+                    <p>KaoPuShangjia始终以专业的态度，诚信的服务，帮助客户在激烈的市场竞争中脱颖而出！</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 服务优势 -->
+    <section class="section" id="features">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>服务优势</h2>
+                <p>Core Advantages - 打造行业领先的服务体验</p>
+            </div>
+            <div class="features-grid">
+                <div class="feature-card fade-in">
+                    <div class="feature-number">01</div>
+                    <div class="feature-content">
+                        <h3>高效稳定的技术支持</h3>
+                        <p>提供快速、顺利的APP上架服务，确保官方极速审核与稳定上线，避免下架风险，让您的应用快速触达用户。</p>
+                    </div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">02</div>
+                    <div class="feature-content">
+                        <h3>一站式全方位服务</h3>
+                        <p>覆盖苹果APP、谷歌APP、TF白包、开发者账号、苹果企业签名等多项服务，简化上架流程，节省您的时间和精力。</p>
+                    </div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">03</div>
+                    <div class="feature-content">
+                        <h3>深厚行业经验与全球化支持</h3>
+                        <p>十年以上行业经验，全球化业务覆盖，帮助客户顺利进入全球应用商店，拓展国际市场，实现业务增长。</p>
+                    </div>
+                </div>
+                <div class="feature-card fade-in">
+                    <div class="feature-number">04</div>
+                    <div class="feature-content">
+                        <h3>透明定价与专业客户支持</h3>
+                        <p>提供合理透明的定价，7x24小时专业客服保障，确保客户全程无忧，随时响应您的需求和问题。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 数据统计 -->
+    <section class="section stats-section">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat-card fade-in">
+                    <div class="stat-number">10+</div>
+                    <div class="stat-label">年开发经验</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">满意客户</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">成功案例</div>
+                </div>
+                <div class="stat-card fade-in">
+                    <div class="stat-number">30+</div>
+                    <div class="stat-label">技术团队</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 成功案例 -->
+    <section class="section" id="cases">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>成功案例</h2>
+                <p>让我们引以为傲的精品项目</p>
+            </div>
+            <div class="cases-grid">
+                <div class="case-card fade-in">
+                    <img src="case02.jpg" alt="金融类案例">
+                    <div class="case-overlay">
+                        <h3>金融类应用</h3>
+                        <p>专业金融APP上架服务</p>
+                    </div>
+                </div>
+                <div class="case-card fade-in">
+                    <img src="case03.jpg" alt="游戏类案例">
+                    <div class="case-overlay">
+                        <h3>游戏类应用</h3>
+                        <p>热门游戏快速上架</p>
+                    </div>
+                </div>
+                <div class="case-card fade-in">
+                    <img src="case01.jpg" alt="工具类案例">
+                    <div class="case-overlay">
+                        <h3>工具类应用</h3>
+                        <p>实用工具精准上架</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 客户评价 -->
+    <section class="section" id="testimonials">
+        <div class="container">
+            <div class="section-title fade-in">
+                <h2>客户评价</h2>
+                <p>听听我们客户的真实声音</p>
+            </div>
+            <div class="testimonials-grid">
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">A</div>
+                        <div class="testimonial-info">
+                            <h4>Allen</h4>
+                            <p class="testimonial-role">原生APP开发者</p>
+                        </div>
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"你们技术是真的牛，我的原生APP自己提交已经被4.3了，抱着试一试的心理，没想到你们真的上成功了，还只花了两天时间，真心佩服，牛逼！"</p>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">S</div>
+                        <div class="testimonial-info">
+                            <h4>Sky</h4>
+                            <p class="testimonial-role">专业搭建服务商</p>
+                        </div>
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"我是专业搞搭建的，接触过不少搞上架的了，坦白说你们价格不是最便宜的，但稳定性真是没得说，还是有两把刷子，你们是如何搞这么稳定的呢？上架以后就只找你们了。"</p>
+                </div>
+                <div class="testimonial-card fade-in">
+                    <div class="testimonial-header">
+                        <div class="testimonial-avatar">J</div>
+                        <div class="testimonial-info">
+                            <h4>Jacy</h4>
+                            <p class="testimonial-role">H5应用开发者</p>
+                        </div>
+                    </div>
+                    <div class="stars">⭐⭐⭐⭐⭐</div>
+                    <p class="testimonial-text">"你说上架要3天时间，我H5没开发完就找你下单了，担心3天上不好。结果当天确定名称和logo，你当天就上架成功了，这是什么神操作，太TM牛逼了！"</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div>
+                <div class="footer-logo">
+                    <img src="logo.jpeg" alt="KaoPuShangjia Logo" style="width: 40px; height: 40px; object-fit: contain;">
+                    KaoPuShangjia
+                </div>
+                <p class="footer-desc">专业的APP上架服务商，致力于为全球客户提供高效、专业的应用商店上架解决方案。10年行业经验，技术领先，服务至上。</p>
+            </div>
+            <div>
+                <h3 class="footer-title">核心服务</h3>
+                <ul class="footer-links">
+                    <li><a href="#services">苹果APP上架</a></li>
+                    <li><a href="#services">谷歌APP上架</a></li>
+                    <li><a href="#services">开发者服务</a></li>
+                    <li><a href="#services">企业签名</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">快速链接</h3>
+                <ul class="footer-links">
+                    <li><a href="#about">关于我们</a></li>
+                    <li><a href="#features">服务优势</a></li>
+                    <li><a href="#cases">成功案例</a></li>
+                    <li><a href="#testimonials">客户评价</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3 class="footer-title">友情链接</h3>
+                <ul class="footer-links">
+                    <li><a href="./">Google上架</a></li>
+                    <li><a href="./">iOS上架</a></li>
+                    <li><a href="./">App Store上架</a></li>
+                    <li><a href="./">Google Play上架</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Copyright © 2015-2025 KaoPuShangjia® www.kaopushangjia.com 版权所有 All rights reserved</p>
+        </div>
+    </footer>
+
+    <!-- 悬浮按钮 -->
+    <div class="floating-buttons">
+        <a href="https://t.me/aleshuaige" target="_blank" class="floating-btn" title="联系客服">💬</a>
+        <div class="floating-btn secondary" onclick="scrollToTop()" title="返回顶部">↑</div>
+    </div>
+
+    <script>
+        // 导航栏滚动效果
+        window.addEventListener('scroll', function() {
+            const navbar = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+            } else {
+                navbar.classList.remove('scrolled');
+            }
+        });
+
+        // 滚动动画
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => {
+            observer.observe(el);
+        });
+
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // 返回顶部
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+
+        // 数字滚动动画
+        function animateValue(element, start, end, duration) {
+            let startTimestamp = null;
+            const step = (timestamp) => {
+                if (!startTimestamp) startTimestamp = timestamp;
+                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
+                const value = Math.floor(progress * (end - start) + start);
+                element.textContent = value + (element.textContent.includes('+') ? '+' : '');
+                if (progress < 1) {
+                    window.requestAnimationFrame(step);
+                }
+            };
+            window.requestAnimationFrame(step);
+        }
+
+        // 当统计数据区域进入视口时触发动画
+        const statsObserver = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const statNumbers = entry.target.querySelectorAll('.stat-number');
+                    statNumbers.forEach(stat => {
+                        const text = stat.textContent;
+                        const hasPlus = text.includes('+');
+                        const num = parseInt(text.replace('+', ''));
+                        stat.textContent = '0' + (hasPlus ? '+' : '');
+                        animateValue(stat, 0, num, 2000);
+                    });
+                    statsObserver.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.5 });
+
+        const statsSection = document.querySelector('.stats-section');
+        if (statsSection) {
+            statsObserver.observe(statsSection);
+        }
+    </script>
+</body>
+</html>
